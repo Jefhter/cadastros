@@ -34,6 +34,9 @@ Biblioteca usada para manipulação de entrada e saída de console.
 Disponível principalmente em sistemas baseados em DOS e Windows.
 Funções como getch() (ler caractere sem eco no console) e clrscr() (limpar a tela do console).
 
+- *LOCALE*
+Biblioteca usada para configurar e manipular localidades (regional settings), permitindo que o programa adapte comportamentos regionais como: Formatação de números (separador decimal e de milhar). Formatação de datas e horas. Ordem de classificação (sorting) de strings. Representação de moedas e valores monetários.
+
 - *WINDOWS*
 Biblioteca específica do Windows para programação de baixo nível.
 Permite acesso a funcionalidades do sistema operacional, como gerenciamento de janelas, arquivos, threads e manipulação de APIs do Windows.
@@ -45,6 +48,7 @@ Neste programa foi utilizado por várias vezes a função system().
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include <locale.h>
 #include <windows.h>
 ```
 

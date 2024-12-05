@@ -1,12 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-<<<<<<< HEAD
 #include <locale.h>
-=======
 #include <conio.h>
 #include <windows.h>
->>>>>>> 5a1064823536addf3792f32173a6391eb96c6827
 
 // Observações:
 // - o vetor de alunos deve ser alocado dinamicamente, com a dimensão inicial 10, através de uma função;
@@ -75,19 +72,6 @@ void cadastraDisciplina(Disciplina *disciplinas[]){
 //   a - um aluno deve cursar ao menos 4 disciplinas
 //   b - para cada disciplina deve haver 4 notas, com o respectivo cálculo da sua média
 // //recebe um vetor do tipo td_aluno e sua dimensão
-<<<<<<< HEAD
-void cadastraAluno(){
-    system("cls");
-    // int i, n;
-    // //Aluno alunos = alocaVetorAlunos();
-    // for(i=0; i<n; i++){
-    //     printf("Cadastro do Aluno %i", i+1);
-    //     printf("Informe o RA do Aluno: ");
-    //     //scanf("%i", &alunos.ra);
-
-
-    // }
-=======
 void cadastraAluno(Aluno *aluno[], int d){
     int i;
     for(i=0; i<d; i++){
@@ -106,19 +90,12 @@ void cadastraAluno(Aluno *aluno[], int d){
 
 
     }
->>>>>>> 5a1064823536addf3792f32173a6391eb96c6827
 }
 
 // CADASTRAR COMPROMISSO //
 //   a - um aluno não pode ter mais do que dois compromissos cadastrados na mesma data
 //   b - caso um aluno possua dois compromissos na mesma data, os horários não podem estar sobrepostos/coincidentes
 //recebe um vetor do tipo td_compromisso e sua dimensão
-<<<<<<< HEAD
-void cadastraCompromisso(){
-    system("cls");
-=======
->>>>>>> 5a1064823536addf3792f32173a6391eb96c6827
-
 
 void cadastraCompromisso(Compromisso *comp[], int d){
     int i;
@@ -131,7 +108,7 @@ void cadastraCompromisso(Compromisso *comp[], int d){
         fgets(comp[i].descricao, sizeof(comp[i].descricao), stdin);
         printf("\n\n-----------------------------------------------");
         system("cls");
-        // Falta o Atributo Aluno aluno de Compromisso
+        // Falta o Atributo aluno de Compromisso
     }
 }
 
@@ -303,6 +280,7 @@ void realocaVetorcompromissos(){
 void menu(){
     char resp[2];
     do{
+        int quant;
         //imprime o menu
         printf("Funcionalidades do Sistema:\n-------------------------------------------------------\n\t1 - Cadastrar Aluno\n\t2 - Cadastrar Compromisso\n\t3 - Imprimir Compromissos\n\t\ta - de um aluno\n\t\tb - de todos os alunos\n\t\tc - de uma data\n\t\td - de todas as datas\n\t4 - Imprimir dados de um aluno\n\t5 - Imprimir dados de todos os alunos\n\t6 - Sair\n-------------------------------------------------------");
         
@@ -316,13 +294,11 @@ void menu(){
         // nos compromissos avalia a segunda parte da variável e manda na função a especificação
         switch (resp[0]){
             case '1':
-                int quant;
                 printf("Quantos alunos deseja cadastrar? ");
                 scanf("%i", &quant);
                 cadastraAluno(quant);
                 break;
             case '2':
-                int quant;
                 printf("Quantos comprimissos deseja cadastrar? ");
                 scanf("%i", &quant);
                 cadastraCompromisso(quant);
