@@ -73,7 +73,8 @@ void cadastraDisciplina(Disciplina *disciplinas[]){
 //   b - para cada disciplina deve haver 4 notas, com o respectivo cálculo da sua média
 // //recebe um vetor do tipo td_aluno e sua dimensão
 void cadastraAluno(Aluno *alunos, int d) {
-    for (int i = 0; i < d; i++) {
+	int i;
+    for(i = 0; i < d; i++) {
         printf("\nAluno %d...\n", i + 1);
         printf("RA: ");
         scanf("%d", &alunos[i].ra);
@@ -87,7 +88,8 @@ void cadastraAluno(Aluno *alunos, int d) {
         scanf("%d %d %d", &alunos[i].matricula.dia, &alunos[i].matricula.mes, &alunos[i].matricula.ano);
         getchar();
 
-        for (int j = 0; j < 4; j++) {
+		int j;
+        for (j = 0; j < 4; j++) {
             printf("Código da disciplina %d: ", j + 1);
             scanf("%d", &alunos[i].disciplinas[j].codigo_dis);
             getchar();
@@ -97,14 +99,15 @@ void cadastraAluno(Aluno *alunos, int d) {
             alunos[i].disciplinas[j].disciplina[strcspn(alunos[i].disciplinas[j].disciplina, "\n")] = 0;
 
             printf("Notas (4 valores): ");
-            for (int k = 0; k < 4; k++) {
+            int k;
+            for (k = 0; k < 4; k++) {
                 scanf("%f", &alunos[i].disciplinas[j].notas[k]);
             }
             getchar();
 
             // Calcula média
             float soma = 0;
-            for (int k = 0; k < 4; k++) {
+            for (k = 0; k < 4; k++) {
                 soma += alunos[i].disciplinas[j].notas[k];
             }
             alunos[i].disciplinas[j].media = soma / 4;
@@ -125,7 +128,8 @@ void cadastraAluno(Aluno *alunos, int d) {
 //recebe um vetor do tipo td_compromisso e sua dimensão
 
 void cadastraCompromisso(Compromisso *comp, Aluno *alunos, int numAlunos, int d) {
-    for (int i = 0; i < d; i++) {
+	int i;
+    for (i = 0; i < d; i++) {
         printf("\nCompromisso %d...\n", i + 1);
 
         printf("RA do aluno: ");
@@ -134,7 +138,8 @@ void cadastraCompromisso(Compromisso *comp, Aluno *alunos, int numAlunos, int d)
         getchar();
 
         int encontrado = 0;
-        for (int j = 0; j < numAlunos; j++) {
+        int j;
+        for (j = 0; j < numAlunos; j++) {
             if (alunos[j].ra == raBusca) {
                 comp[i].aluno = alunos[j];
                 encontrado = 1;
@@ -214,9 +219,8 @@ int verificaEmail(char *email) {
 }
 
 int verificaCompromisso(Compromisso *compromissos, int total, Compromisso novo) {
-    int count = 0;
-    
-    for (int i = 0; i < total; i++) {
+    int count = 0, i;
+    for (i = 0; i < total; i++) {
         if (compromissos[i].aluno.ra == novo.aluno.ra &&
             compromissos[i].data.dia == novo.data.dia &&
             compromissos[i].data.mes == novo.data.mes &&
@@ -410,32 +414,7 @@ void menu(){
     }while(resp[0]!='6');
 }
 
-int main(){
-    //Reconhece caracteres em pt-BR
-    setlocale(LC_ALL, "pt_BR.UTF-8");
 
-    //Apresenta o Trabalho
-    system("cls");
-    printf("\n------------------------------------------------------\nBem-vindo ao meu Trabalho de Algoritmos 2!!\n\tAluno: Jefhter Cabral\n\tRA: 2565390\n\tProfessor: Gabriel Canhadas Genvigir\n\tProjeto: Sistema de Cadastro\n------------------------------------------------------\n\n");
-    
-    //Limpa a tela
-    printf("Press Enter to continue... ");
-    char resp = getchar();
-    system("cls");
-    
-    //chama o menu
-    menu();
-
-    //finalização do programa
-    system("cls");
-    printf("\n\n-------------------------------\nBy: Jefhter R. Cabral - 2565390\n11/2024.\n-------------------------------\n\n");
-    return 0;
-}
-
-
-
-
-// IDEIAS DE FUNÇÕES QUE PODEM SER USADAS:
 int comparaAlunos(const void *a, const void *b) {
     return ((Aluno *)a)->ra - ((Aluno *)b)->ra;
 }
@@ -462,4 +441,27 @@ void ordenaAlunos(Aluno *alunos, int tamanho) {
 
 void ordenaCompromissos(Compromisso *comp, int tamanho) {
     qsort(comp, tamanho, sizeof(Compromisso), comparaCompromissos);
+}
+
+
+int main(){
+    //Reconhece caracteres em pt-BR
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+
+    //Apresenta o Trabalho
+    system("cls");
+    printf("\n------------------------------------------------------\nBem-vindo ao meu Trabalho de Algoritmos 2!!\n\tAluno: Jefhter Cabral\n\tRA: 2565390\n\tProfessor: Gabriel Canhadas Genvigir\n\tProjeto: Sistema de Cadastro\n------------------------------------------------------\n\n");
+    
+    //Limpa a tela
+    printf("Press Enter to continue... ");
+    char resp = getchar();
+    system("cls");
+    
+    //chama o menu
+    menu();
+
+    //finalização do programa
+    system("cls");
+    printf("\n\n-------------------------------\nBy: Jefhter R. Cabral - 2565390\n11/2024.\n-------------------------------\n\n");
+    return 0;
 }
