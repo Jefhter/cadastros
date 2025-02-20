@@ -124,16 +124,16 @@ void cadastraDisciplina(Disciplina *disciplinas[]){
 //   a - um aluno deve cursar ao menos 4 disciplinas
 //   b - para cada disciplina deve haver 4 notas, com o respectivo cálculo da sua média
 // //recebe um vetor do tipo td_aluno e sua dimensão
-void cadastraAluno(Aluno *aluno[], int d){
+void cadastraAluno(Aluno *aluno[]){
     int i;
-    for(i=0; i<d; i++){
+    for(i=0; i<sizeof(aluno); i++){
         printf("-------------Cadastramento de Aluno--------");
         printf("\nAluno %d...", i+1);
         printf("\nRA: ");
         scanf("%i", &aluno[i]->ra);
         printf("\nNome: ");
         fgets(aluno[i]->nome, sizeof(aluno[i]->nome), stdin);
-        //leData(aluno[i]->matricula);
+        leData(aluno[i]->matricula);
         cadastraDisciplina(aluno[i]->disciplinas);
         printf("Qual o email do aluno? ");
         fgets(aluno[i]->email, sizeof(aluno[i]->email), stdin);
@@ -170,7 +170,7 @@ void leHorario(Hora *horario){
 
 void cadastraCompromisso(Compromisso *comp[], int d){
     int i;
-    for(i=0; i<d; i++){
+    for(i=0; i<sizeof(comp); i++){
         printf("-------------Cadastramento de Compromisso--------");
         printf("\n\nCOMPROMISSO %d...", i+1);
         leData(&comp[i]->data);
@@ -179,7 +179,6 @@ void cadastraCompromisso(Compromisso *comp[], int d){
         fgets(comp[i]->descricao, sizeof(comp[i]->descricao), stdin);
         printf("\n\n-----------------------------------------------");
         system("cls");
-        // Falta o Atributo aluno de Compromisso
     }
 }
 
@@ -222,14 +221,14 @@ void imprimeCompromisso(int tipo){
             scanf("%i", &ra);
             break;
         case 2:
-            //printf(alunosOrdernados);
+            printf(alunosOrdernados);
             break;
         case 3:
             printf("Compromisso de qual data? ");
-            //leData(dataEspecifica);
+            leData(dataEspecifica);
             break;
         case 4:
-            //printf(compromissosOrdenados);
+            printf(compromissosOrdenados);
             break;
         default:
             printf("Erro!");
@@ -241,28 +240,20 @@ void imprimeCompromisso(int tipo){
 //-----------//
 
 
-// 6 – alocar dinamicamente o vetor de alunos
-void alocaVetorAlunos(quant){
-
-
+Aluno* alocaVetorAlunos(int quant) {
+    return (Aluno*) malloc(quant * sizeof(Aluno));
 }
 
-// 7 – realocar dinamicamente o vetor de alunos
-void realocaVetorAlunos(){
-
-
+Aluno* realocaVetorAlunos(Aluno* alunos, int novaQuant) {
+    return (Aluno*) realloc(alunos, novaQuant * sizeof(Aluno));
 }
 
-// 8 – alocar dinamicamente o vetor de compromissos
-void alocaVetorCompromissos(quant){
-
-
+Compromisso* alocaVetorCompromissos(int quant) {
+    return (Compromisso*) malloc(quant * sizeof(Compromisso));
 }
 
-// 9 – realocar dinamicamente o vetor de compromissos
-void realocaVetorcompromissos(){
-
-
+Compromisso* realocaVetorCompromissos(Compromisso* comp, int novaQuant) {
+    return (Compromisso*) realloc(comp, novaQuant * sizeof(Compromisso));
 }
 
 // Roda o menu enquanto a resposta nao for 7 (sair)
@@ -284,14 +275,12 @@ void menu(){
             case 1:
                 printf("Quantos alunos deseja cadastrar? ");
                 scanf("%i", &quant);
-                alocaVetorAlunos(quant);
-                //cadastraAluno(quant);
+                cadastraAluno(alocaVetorAlunos(quant));
                 break;
             case 2:
                 printf("Quantos comprimissos deseja cadastrar? ");
                 scanf("%i", &quant);
-                alocaVetorCompromissos(quant);
-                //cadastraCompromisso(quant);
+                cadastraCompromisso(alocaVetorCompromissos(quant));
                 break;
             case 3:
                 resp = 0;
